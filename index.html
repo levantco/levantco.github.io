@@ -226,40 +226,60 @@
         }
 
         // Integration with your Apps Script Function
-        async function handleFormSubmit(e) {
+      async function handleFormSubmit(e) {
             e.preventDefault();
+            
+            const userName = document.getElementById('userName').value.trim();
+            const userPhone = document.getElementById('userPhone').value.trim();
+            const userEmail = document.getElementById('userEmail').value.trim();
+            const userNotes = document.getElementById('userNotes').value.trim();
             const btn = document.getElementById('submitBtn');
+
+            // 1. التحقق من البيانات (الاسم ورقم الهاتف)
+            if (userName.length < 3) {
+                alert("يرجى إدخال الاسم الكامل (3 أحرف على الأقل)");
+                return;
+            }
+
+            const phoneRegex = /^[0-9+\s]{8,15}$/;
+            if (userPhone !== "" && !phoneRegex.test(userPhone)) {
+                alert("يرجى إدخال رقم هاتف صحيح");
+                return;
+            }
+
+            // 2. تجهيز الإرسال
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyqE4v-_YWCJN2xK6Gxhy5PIHvwNjYYNUtGND2GnNy1nwvh2QO9PqxNraWlFKQ2KK9c9w/exec';
             
             btn.disabled = true;
-            btn.innerText = "جاري الحجز...";
+            btn.innerText = "جاري تأمين الحجز...";
 
-            // Match your doPost(e) logic: name, email, message
+            // إرسال البيانات كأجزاء منفصلة (لتوزيعها على الأعمدة A, B, C, D, E, F)
             const payload = {
-                name: document.getElementById('userName').value,
-                email: document.getElementById('userEmail').value,
-                message: `مشروع جنتي - نموذج: ${currentModel} - مساحة: ${currentSize} - هاتف: ${document.getElementById('userPhone').value} - ملاحظات: ${document.getElementById('userNotes').value}`
+                name: userName,
+                email: userEmail,
+                model: currentModel,
+                size: currentSize,
+                phone: userPhone,
+                notes: userNotes
             };
 
             try {
-                // Sending as raw JSON to match JSON.parse(e.postData.contents)
                 await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', // Apps Script requires no-cors if not using specialized headers
+                    mode: 'no-cors',
                     cache: 'no-cache',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
                 
-                // Because no-cors doesn't allow reading response, we assume success
-                showStep(3);
+                showStep(3); // الانتقال لصفحة النجاح
             } catch (error) {
                 console.error('Error!', error);
-                // Fallback for visual confirmation
-                showStep(3);
+                alert("حدث خطأ. يرجى المحاولة مرة أخرى.");
+                btn.disabled = false;
+                btn.innerText = "إرسال طلب الحجز";
             }
         }
-
         // Timer Logic
         function updateTimers() {
             const start = new Date("Feb 1, 2026").getTime();
