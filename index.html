@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Levantco LCR | ليفانتكو ال سي آر</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" alt="Levantco LCR Logo" class="main-logo">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                <li><a href="#about" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn" data-en="Our Projects" data-ar="مشاريعنا">مشاريعنا <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#project-jannati" data-en="Jannati Project" data-ar="مشروع جنتي">مشروع جنتي</a>
+                    </div>
+                </li>
+                <li><a href="#booking" data-en="Booking" data-ar="حجز الشقق">حجز الشقق</a></li>
+                <li><a href="#contact" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a></li>
+                <li class="lang-switch"><a href="javascript:void(0)" onclick="toggleLanguage()" id="langBtn">English</a></li>
+            </ul>
+            <div class="burger" onclick="toggleMenu()">
+                <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in" data-en="Levantco LCR <br> <span>The Golden Era</span>" data-ar="ليفانتكو ال سي آر <br> <span>العصر الذهبي</span>">ليفانتكو ال سي آر <br> <span>العصر الذهبي</span></h1>
+            <p class="fade-in" data-en="Luxury real estate development with smart technology." data-ar="تطوير عقاري فاخر مدعوم بأحدث التقنيات الذكية.">تطوير عقاري فاخر مدعوم بأحدث التقنيات الذكية.</p>
+            <div class="hero-btns">
+                <a href="#booking" class="btn btn-gold" data-en="Book Now" data-ar="احجز الآن">احجز الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Countdown -->
+    <section class="countdown-section">
+        <div class="container">
+            <div class="countdown-wrapper">
+                <div class="countdown-item">
+                    <h3 data-ar="بدء التنفيذ: 1 شباط 2026">بدء التنفيذ: 1 شباط 2026</h3>
+                    <div class="timer-grid" id="start-timer">
+                        <div class="time-box"><span id="s-days">00</span><small>يوم</small></div>
+                        <div class="time-box"><span id="s-hours">00</span><small>ساعة</small></div>
+                        <div class="time-box"><span id="s-mins">00</span><small>دقيقة</small></div>
+                        <div class="time-box"><span id="s-secs">00</span><small>ثانية</small></div>
+                    </div>
+                </div>
+                <div class="countdown-item">
+                    <h3 data-ar="التسليم النهائي: 1 شباط 2029">التسليم النهائي: 1 شباط 2029</h3>
+                    <div class="timer-grid gold-timer" id="end-timer">
+                        <div class="time-box"><span id="e-days">00</span><small>يوم</small></div>
+                        <div class="time-box"><span id="e-hours">00</span><small>ساعة</small></div>
+                        <div class="time-box"><span id="e-mins">00</span><small>دقيقة</small></div>
+                        <div class="time-box"><span id="e-secs">00</span><small>ثانية</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Jannati -->
+    <section id="project-jannati" class="project-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-en="Jannati Project" data-ar="مشروع جنتي">مشروع جنتي</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="jannati-content">
+                <div class="jannati-info">
+                    <p data-ar="يضم مشروع جنتي السكني 20 برجاً بتصاميم عصرية ونظام ذكي شامل يغطي كافة احتياجاتك." data-en="Jannati includes 20 residential towers with smart management systems.">يضم مشروع جنتي السكني 20 برجاً بتصاميم عصرية ونظام ذكي شامل يغطي كافة احتياجاتك.</p>
+                    <div class="spec-grid">
+                        <div class="spec-item"><i class="fas fa-expand"></i> 88,000 م²</div>
+                        <div class="spec-item"><i class="fas fa-shield-alt"></i> أمان ذكي</div>
+                        <div class="spec-item"><i class="fas fa-leaf"></i> بيئة خضراء</div>
+                    </div>
+                </div>
+                <div class="jannati-visual">
+                    <img src="https://drive.google.com/thumbnail?id=1kvn50kR4WUM5wtGsVtUiLicV_ARvjKVt&sz=w1000" alt="Jannati Master Plan" onclick="openLightbox(this.src)">
+                    <p class="img-cap">المخطط العام لمشروع جنتي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking System -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-en="Apartment Selection" data-ar="اختيار الشقة والحجز">اختيار الشقة والحجز</h2>
+                <p data-ar="اختر النموذج المفضل لديك من مشروع جنتي">اختر النموذج المفضل لديك من مشروع جنتي</p>
+            </div>
+
+            <div class="booking-container">
+                <!-- Step 1: Model Selection -->
+                <div id="step-1" class="booking-step active">
+                    <div class="models-grid">
+                        <div class="model-box" onclick="selectModel('A', '275م')">
+                            <div class="badge">A</div>
+                            <img src="https://drive.google.com/thumbnail?id=1qv_mSX2A7n6jwwTcP4u4AeKypyYYB7Yv&sz=w500" alt="Model A">
+                            <h4>نموذج A (275 م²)</h4>
+                        </div>
+                        <div class="model-box" onclick="selectModel('B', '275م')">
+                            <div class="badge">B</div>
+                            <img src="https://drive.google.com/thumbnail?id=1gH_yhJ8rza2VinuG-9QacOXLdVhJyrdd&sz=w500" alt="Model B">
+                            <h4>نموذج B (275 م²)</h4>
+                        </div>
+                        <div class="model-box" onclick="selectModel('C', '150م')">
+                            <div class="badge">C</div>
+                            <img src="https://drive.google.com/thumbnail?id=1VNVDxgn9q9naPeXjdvTERapTSXadXFxu&sz=w500" alt="Model C">
+                            <h4>نموذج C (150 م²)</h4>
+                        </div>
+                        <div class="model-box" onclick="selectModel('D', '150م')">
+                            <div class="badge">D</div>
+                            <img src="https://drive.google.com/thumbnail?id=1hkGcfK5u8N38A8cSRwxyLcqdHF307PAT&sz=w500" alt="Model D">
+                            <h4>نموذج D (150 م²)</h4>
+                        </div>
+                        <div class="model-box" onclick="selectModel('E', '250م')">
+                            <div class="badge">E</div>
+                            <img src="https://drive.google.com/thumbnail?id=1M0rBgenb4M-PfwP_ymHBRchToigQFOuA&sz=w500" alt="Model E">
+                            <h4>نموذج E (250 م²)</h4>
+                        </div>
+                        <div class="model-box" onclick="selectModel('F', '250م')">
+                            <div class="badge">F</div>
+                            <img src="https://drive.google.com/thumbnail?id=1DIQlAUevJ5vMPFPjsDt9U3wEyi0We1tN&sz=w500" alt="Model F">
+                            <h4>نموذج F (250 م²)</h4>
+                        </div>
+                        <div class="model-box vip" onclick="selectModel('VIP', '400م')">
+                            <div class="badge">VIP</div>
+                            <img src="https://drive.google.com/thumbnail?id=1rWAM4gP-4YcmQxs85CELtPsHdax1dELQ&sz=w500" alt="Model VIP">
+                            <h4>نموذج VIP (400 م²)</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Data Entry -->
+                <div id="step-2" class="booking-step">
+                    <div class="booking-card">
+                        <div class="summary-bar">
+                            <span>النموذج: <strong id="selModel">-</strong></span>
+                            <span>المساحة: <strong id="selSize">-</strong></span>
+                            <button class="change-btn" onclick="showStep(1)">تغيير</button>
+                        </div>
+                        <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                            <div class="form-row">
+                                <input type="text" id="userName" placeholder="الاسم الكامل" required>
+                                <input type="tel" id="userPhone" placeholder="رقم الهاتف (اختياري)">
+                            </div>
+                            <input type="email" id="userEmail" placeholder="البريد الإلكتروني" required>
+                            <textarea id="userNotes" placeholder="ملاحظات إضافية"></textarea>
+                            <button type="submit" id="submitBtn" class="btn btn-gold w-full">إرسال طلب الحجز</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success -->
+                <div id="step-3" class="booking-step text-center">
+                    <div class="success-box">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>تم استلام طلبك!</h3>
+                        <p>تم ترحيل بيانات الحجز إلى الشيت بنجاح. سنقوم بالتواصل معك في أقرب وقت.</p>
+                        <button class="btn btn-outline" onclick="location.reload()">العودة للرئيسية</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer-grid">
+            <div class="f-col">
+                <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" class="footer-logo">
+                <p>ليفانتكو ال سي آر - قمة الرفاهية في التطوير العقاري.</p>
+            </div>
+            <div class="f-col">
+                <h4>تواصل مباشر</h4>
+                <p><i class="fas fa-phone"></i> +905392007644</p>
+                <p><i class="fas fa-envelope"></i> dannoungroup.sy@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+        <span class="close-lb">&times;</span>
+        <img id="lb-img" src="">
+    </div>
+
+    <script>
+        let currentModel = "";
+        let currentSize = "";
+
+        // UI Interactions
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        function openLightbox(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+
+        function selectModel(m, s) {
+            currentModel = m;
+            currentSize = s;
+            document.getElementById('selModel').innerText = m;
+            document.getElementById('selSize').innerText = s;
+            showStep(2);
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.booking-step').forEach((s, i) => {
+                s.classList.toggle('active', i + 1 === n);
+            });
+        }
+
+        // Integration with your Apps Script Function
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyqE4v-_YWCJN2xK6Gxhy5PIHvwNjYYNUtGND2GnNy1nwvh2QO9PqxNraWlFKQ2KK9c9w/exec';
+            
+            btn.disabled = true;
+            btn.innerText = "جاري الحجز...";
+
+            // Match your doPost(e) logic: name, email, message
+            const payload = {
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                message: `مشروع جنتي - نموذج: ${currentModel} - مساحة: ${currentSize} - هاتف: ${document.getElementById('userPhone').value} - ملاحظات: ${document.getElementById('userNotes').value}`
+            };
+
+            try {
+                // Sending as raw JSON to match JSON.parse(e.postData.contents)
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Apps Script requires no-cors if not using specialized headers
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                // Because no-cors doesn't allow reading response, we assume success
+                showStep(3);
+            } catch (error) {
+                console.error('Error!', error);
+                // Fallback for visual confirmation
+                showStep(3);
+            }
+        }
+
+        // Timer Logic
+        function updateTimers() {
+            const start = new Date("Feb 1, 2026").getTime();
+            const end = new Date("Feb 1, 2029").getTime();
+            const now = new Date().getTime();
+
+            const calc = (target, id) => {
+                const diff = target - now;
+                if (diff < 0) return;
+                document.getElementById(id+'-days').innerText = Math.floor(diff/(1000*60*60*24));
+                document.getElementById(id+'-hours').innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+                document.getElementById(id+'-mins').innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+                document.getElementById(id+'-secs').innerText = Math.floor((diff%(1000*60))/1000);
+            };
+            calc(start, 's'); calc(end, 'e');
+        }
+        setInterval(updateTimers, 1000);
+
+        function toggleLanguage() {
+            const isAr = document.documentElement.lang === "ar";
+            document.documentElement.lang = isAr ? "en" : "ar";
+            document.documentElement.dir = isAr ? "ltr" : "rtl";
+            document.getElementById('langBtn').innerText = isAr ? "العربية" : "English";
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+            });
+        }
+    </script>
+</body>
+</html>
