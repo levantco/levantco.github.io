@@ -111,10 +111,24 @@
                 <!-- Step 1: Model Selection -->
                 <div id="step-1" class="booking-step active">
                     <div class="models-grid">
-                        <div class="model-box" onclick="selectModel('A', '275م')">
+                        <div class="model-box">
                             <div class="badge">A</div>
-                            <img src="https://drive.google.com/thumbnail?id=1qv_mSX2A7n6jwwTcP4u4AeKypyYYB7Yv&sz=w500" alt="Model A">
+                            <img src="https://drive.google.com/thumbnail?id=1kvn50kR4WUM5wtGsVtUiLicV_ARvjKVt&sz=w500" alt="Model A">
                             <h4>نموذج A (275 م²)</h4>
+                            
+                            <div class="model-actions">
+                                <button class="action-btn" onclick="viewVideo('https://www.youtube.com/embed/رابط_الفيديو')">
+                                    <i class="fas fa-video"></i> فيديو
+                                </button>
+                                <button class="action-btn" onclick="viewGallery(['صورة1.jpg', 'صورة2.jpg', 'صورة3.jpg'])">
+                                    <i class="fas fa-images"></i> صور
+                                </button>
+                                <a href="رابط_الملف.pdf" target="_blank" class="action-btn">
+                                    <i class="fas fa-file-pdf"></i> كتالوج
+                                </a>
+                            </div>
+
+                            <button class="select-model-btn" onclick="selectModel('A', '275م')">احجز الآن</button>
                         </div>
                         <div class="model-box" onclick="selectModel('B', '275م')">
                             <div class="badge">B</div>
@@ -307,6 +321,38 @@
                 el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
             });
         }
+        // دالة عرض الفيديو
+function viewVideo(url) {
+    const overlay = document.getElementById('mediaOverlay');
+    const container = document.getElementById('mediaContainer');
+    container.innerHTML = `<iframe width="100%" height="500px" src="${url}" frameborder="0" allowfullscreen></iframe>`;
+    overlay.style.display = 'flex';
+}
+
+// دالة عرض الصور (معرض بسيط)
+function viewGallery(images) {
+    const overlay = document.getElementById('mediaOverlay');
+    const container = document.getElementById('mediaContainer');
+    let content = '<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">';
+    images.forEach(img => {
+        content += `<img src="${img}" style="width:100%; border-radius:10px;">`;
+    });
+    content += '</div>';
+    container.innerHTML = content;
+    overlay.style.display = 'flex';
+}
+
+// إغلاق النافذة
+function closeMedia() {
+    document.getElementById('mediaOverlay').style.display = 'none';
+    document.getElementById('mediaContainer').innerHTML = '';
+}
     </script>
+    <div id="mediaOverlay" class="media-overlay">
+    <div class="media-content">
+        <span class="close-media" onclick="closeMedia()">&times;</span>
+        <div id="mediaContainer"></div>
+    </div>
+</div>
 </body>
 </html>

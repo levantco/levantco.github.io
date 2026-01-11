@@ -142,3 +142,69 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     .timer-grid { flex-wrap: wrap; }
     .nav-links { display: none; }
 }
+/* تنسيق أزرار الملحقات داخل البطاقة */
+.model-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 5px;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Cairo';
+    transition: 0.3s;
+}
+.action-btn:hover { color: var(--dark); transform: scale(1.1); }
+
+/* نافذة العرض الكبيرة (Overlay) */
+.media-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none; /* مخفي افتراضياً */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.media-content { position: relative; width: 80%; max-width: 900px; }
+.close-media {
+    position: absolute;
+    top: -40px; right: 0;
+    color: white; font-size: 30px; cursor: pointer;
+}
+/* تنسيق زر اختيار النموذج الاحترافي */
+.select-model-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.select-model-btn:hover {
+    background: var(--deep-gold);
+    letter-spacing: 2px; /* حركة بسيطة تعطي شعور بالفخامة */
+}
+
+/* تعديل صندوق النموذج ليتناسب مع الزر */
+.model-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* لضمان تساوي الأطوال */
+    border-bottom: none; /* إزالة الحدود السفلية لأن الزر سيغطيها */
+}
