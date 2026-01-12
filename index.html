@@ -111,29 +111,41 @@
                 <!-- Step 1: Model Selection -->
                 <div id="step-1" class="booking-step active">
                     <div class="models-grid">
-                        <div class="model-box">
+                         <div class="model-box">
                             <div class="badge">A</div>
-                            <img src="https://drive.google.com/thumbnail?id=1kvn50kR4WUM5wtGsVtUiLicV_ARvjKVt&sz=w500" alt="Model A">
-                            <h4>نموذج A (275 م²)</h4>
-                            
-                            <div class="model-actions">
+                            <img src="https://drive.google.com/thumbnail?id=1qv_mSX2A7n6jwwTcP4u4AeKypyYYB7Yv&sz=w500" alt="Model A">
+                                <h4>نموذج A (275 م²)</h4>
+                                <div class="model-actions">
                                 <button class="action-btn" onclick="viewVideo('https://www.youtube.com/embed/XiZVVBVLDEE')">
-                                    <i class="fas fa-video"></i> فيديو
+                                <i class="fas fa-video"></i> فيديو
                                 </button>
-                                <button class="action-btn" onclick="viewGallery(['صورة1.jpg', 'صورة2.jpg', 'صورة3.jpg'])">
-                                    <i class="fas fa-images"></i> صور
+                                <button class="action-btn" onclick="viewGallery(['https://drive.google.com/thumbnail?id=1G2NQRPtbazrqlEB8vXxim3qd8oQmim1x&sz=w1000', 'https://drive.google.com/thumbnail?id=128kofEtUbYZ4-rHm3bbWLeFkYB2P726v&sz=w1000', 'https://drive.google.com/thumbnail?id=1bx2l93-LTbQHQJiMHjHRUh_JwyXYrbFa&sz=w1000','https://drive.google.com/thumbnail?id=16rid3BBC3dLWgQRtic0SrrdvHgB4zEAT&sz=w1000','https://drive.google.com/thumbnail?id=1Xng7OI33YTSLwihg6jG4Lq1mm1m07jfV&sz=w1000'])">
+                                <i class="fas fa-images"></i> صور
                                 </button>
-                                <a href="رابط_الملف.pdf" target="_blank" class="action-btn">
+                                <a href="https://drive.google.com/file/d/1RowNHB_bVuHOn4XZMwaM8BATlw1LkjG4/view?usp=sharing" target="_blank" class="action-btn">
                                     <i class="fas fa-file-pdf"></i> كتالوج
                                 </a>
-                            </div>
-
-                            <button class="select-model-btn" onclick="selectModel('A', '275م')">احجز الآن</button>
+                                </div>
+                                <button class="select-model-btn" onclick="selectModel('A', '275م')">احجز الآن</button>
                         </div>
-                        <div class="model-box" onclick="selectModel('B', '275م')">
-                            <div class="badge">B</div>
-                            <img src="https://drive.google.com/thumbnail?id=1gH_yhJ8rza2VinuG-9QacOXLdVhJyrdd&sz=w500" alt="Model B">
-                            <h4>نموذج B (275 م²)</h4>
+                       <div class="model-box">
+                        <div class="badge">B</div>
+
+                <img src="https://drive.google.com/thumbnail?id=1gH_yhJ8rza2VinuG-9QacOXLdVhJyrdd&sz=w500" alt="Model B">
+                                        <h4>نموذج B (275 م²)</h4>
+            <div class="model-actions">
+                        <button class="action-btn" onclick="viewVideo('https://www.youtube.com/embed/XiZVVBVLDEE')">
+                            <i class="fas fa-video"></i> فيديو
+                            </button>
+                            <button class="action-btn" onclick="viewGallery(['https://drive.google.com/thumbnail?id=1G2NQRPtbazrqlEB8vXxim3qd8oQmim1x&sz=w1000','https://drive.google.com/thumbnail?id=1147jN4GqJ2DDpkKrBMyjtIju9XbFsGOA&sz=w1000','https://drive.google.com/thumbnail?id=1M1pof0yY4veXUjdnIwhbhjfm3fs_Xl7h&sz=w1000','https://drive.google.com/thumbnail?id=1mGnq54XyjeAv1gDuftEbFqZasThICoB7&sz=w1000','https://drive.google.com/thumbnail?id=12ja05QMD6KcWVF8Rx8B4dbqZJGzTlmfZ&sz=w1000','https://drive.google.com/thumbnail?id=1iRUogNkEFKEyHi3u1YTOK3sjdqyE0_Pq&sz=w1000','https://drive.google.com/thumbnail?id=1isMZSvsl-aHvz13GaduFzDhKCEoBo2E-&sz=w1000'])">
+                            <i class="fas fa-images"></i> صور
+                            </button>
+                            <a href="https://drive.google.com/file/d/1RowNHB_bVuHOn4XZMwaM8BATlw1LkjG4/view?usp=sharing" target="_blank" class="action-btn">
+                                <i class="fas fa-file-pdf"></i> كتالوج
+                            </a>
+                            </div>
+                            <button class="select-model-btn" onclick="selectModel('B', '275م')">احجز الآن</button>
+
                         </div>
                         <div class="model-box" onclick="selectModel('C', '150م')">
                             <div class="badge">C</div>
@@ -205,8 +217,8 @@
             </div>
             <div class="f-col">
                 <h4>تواصل مباشر</h4>
-                <p><i class="fas fa-phone"></i> +905392007644</p>
-                <p><i class="fas fa-envelope"></i> dannoungroup.sy@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +963993427261</p>
+                <p><i class="fas fa-envelope"></i> levantco.lcr@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -330,18 +342,63 @@ function viewVideo(url) {
 }
 
 // دالة عرض الصور (معرض بسيط)
+let currentImgIndex = 0;
+let galleryImages = [];
+
 function viewGallery(images) {
+    galleryImages = images;
+    currentImgIndex = 0;
     const overlay = document.getElementById('mediaOverlay');
-    const container = document.getElementById('mediaContainer');
-    let content = '<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">';
-    images.forEach(img => {
-        content += `<img src="${img}" style="width:100%; border-radius:10px;">`;
-    });
-    content += '</div>';
-    container.innerHTML = content;
+    
+    updateGalleryContent();
     overlay.style.display = 'flex';
+
+    // منع التمرير في الصفحة الخلفية عند فتح المعرض
+    document.body.style.overflow = 'hidden';
 }
 
+function updateGalleryContent() {
+    const container = document.getElementById('mediaContainer');
+    container.innerHTML = `
+        <div class="gallery-wrapper" onclick="event.stopPropagation()">
+            <button class="nav-btn prev" onclick="changeImg(-1)">&#10094;</button>
+            <img src="${galleryImages[currentImgIndex]}" class="active-gallery-img" alt="Gallery Image">
+            <button class="nav-btn next" onclick="changeImg(1)">&#10095;</button>
+            <div class="gallery-counter">${currentImgIndex + 1} / ${galleryImages.length}</div>
+        </div>
+    `;
+}
+
+function changeImg(step) {
+    currentImgIndex += step;
+    if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
+    if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
+    updateGalleryContent();
+}
+
+// دالة إغلاق المعرض
+function closeMedia() {
+    const overlay = document.getElementById('mediaOverlay');
+    overlay.style.display = 'none';
+    document.getElementById('mediaContainer').innerHTML = '';
+    // إعادة تفعيل التمرير في الصفحة
+    document.body.style.overflow = 'auto';
+}
+
+// 1. إغلاق النافذة عند الضغط في أي مكان خارج الصورة (على الخلفية السوداء)
+window.onclick = function(event) {
+    const overlay = document.getElementById('mediaOverlay');
+    if (event.target == overlay) {
+        closeMedia();
+    }
+}
+
+// 2. إغلاق النافذة عند الضغط على زر Esc من لوحة المفاتيح
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeMedia();
+    }
+});
 // إغلاق النافذة
 function closeMedia() {
     document.getElementById('mediaOverlay').style.display = 'none';
