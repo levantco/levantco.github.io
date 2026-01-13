@@ -14,28 +14,39 @@
 
     <!-- Header & Navigation -->
     <nav class="navbar">
-        <div class="container nav-wrapper">
-            <div class="logo">
-                <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" alt="Levantco LCR Logo" class="main-logo">
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
-                <li><a href="#about" data-en="About Us" data-ar="من نحن">من نحن</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn" data-en="Our Projects" data-ar="مشاريعنا">مشاريعنا <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#project-jannati" data-en="Jannati Project" data-ar="مشروع جنتي">مشروع جنتي</a>
-                    </div>
-                </li>
-                <li><a href="#booking" data-en="Booking" data-ar="حجز الشقق">حجز الشقق</a></li>
-                <li><a href="#contact" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a></li>
-                <li class="lang-switch"><a href="javascript:void(0)" onclick="toggleLanguage()" id="langBtn">English</a></li>
-            </ul>
-            <div class="burger" onclick="toggleMenu()">
-                <div class="line1"></div><div class="line2"></div><div class="line3"></div>
-            </div>
+    <div class="container nav-wrapper">
+        <div class="logo">
+            <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" alt="Levantco LCR Logo" class="main-logo">
         </div>
-    </nav>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active" data-en="Home" data-ar="الرئيسية" onclick="toggleMenu()">الرئيسية</a></li>
+            <li><a href="#about" data-en="About Us" data-ar="من نحن" onclick="toggleMenu()">من نحن</a></li>
+            
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn" data-en="Our Projects" data-ar="مشاريعنا">
+                    مشاريعنا <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#project-jannati" data-en="Jannati Project" data-ar="مشروع جنتي" onclick="toggleMenu()">مشروع جنتي</a>
+                </div>
+            </li>
+            
+            <li><a href="#booking" data-en="Booking" data-ar="حجز الشقق" onclick="toggleMenu()">حجز الشقق</a></li>
+            <li><a href="#contact" data-en="Contact Us" data-ar="تواصل معنا" onclick="toggleMenu()">تواصل معنا</a></li>
+            
+            <li class="lang-switch">
+                <a href="javascript:void(0)" onclick="toggleLanguage(); toggleMenu()" id="langBtn">English</a>
+            </li>
+        </ul>
+
+        <div class="burger" id="burgerMenu" onclick="toggleMenu()">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </div>
+</nav>
 
     <!-- Hero Section -->
     <header id="home" class="hero">
@@ -243,181 +254,161 @@
     </div>
 
     <script>
-        let currentModel = "";
-        let currentSize = "";
+    let currentModel = "";
+    let currentSize = "";
+    let currentImgIndex = 0;
+    let galleryImages = [];
 
-        // UI Interactions
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-        function openLightbox(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
-
-        function selectModel(m, s) {
-            currentModel = m;
-            currentSize = s;
-            document.getElementById('selModel').innerText = m;
-            document.getElementById('selSize').innerText = s;
-            showStep(2);
-        }
-
-        function showStep(n) {
-            document.querySelectorAll('.booking-step').forEach((s, i) => {
-                s.classList.toggle('active', i + 1 === n);
-            });
-        }
-
-        // Integration with your Apps Script Function
-      async function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            const userName = document.getElementById('userName').value.trim();
-            const userPhone = document.getElementById('userPhone').value.trim();
-            const userEmail = document.getElementById('userEmail').value.trim();
-            const userNotes = document.getElementById('userNotes').value.trim();
-            const btn = document.getElementById('submitBtn');
-
-            // 1. التحقق من البيانات (الاسم ورقم الهاتف)
-            if (userName.length < 3) {
-                alert("يرجى إدخال الاسم الكامل (3 أحرف على الأقل)");
-                return;
-            }
-
-            const phoneRegex = /^[0-9+\s]{8,15}$/;
-            if (userPhone !== "" && !phoneRegex.test(userPhone)) {
-                alert("يرجى إدخال رقم هاتف صحيح");
-                return;
-            }
-
-            // 2. تجهيز الإرسال
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyqE4v-_YWCJN2xK6Gxhy5PIHvwNjYYNUtGND2GnNy1nwvh2QO9PqxNraWlFKQ2KK9c9w/exec';
-            
-            btn.disabled = true;
-            btn.innerText = "جاري تأمين الحجز...";
-
-            // إرسال البيانات كأجزاء منفصلة (لتوزيعها على الأعمدة A, B, C, D, E, F)
-            const payload = {
-                name: userName,
-                email: userEmail,
-                model: currentModel,
-                size: currentSize,
-                phone: userPhone,
-                notes: userNotes
-            };
-
-            try {
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    cache: 'no-cache',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                showStep(3); // الانتقال لصفحة النجاح
-            } catch (error) {
-                console.error('Error!', error);
-                alert("حدث خطأ. يرجى المحاولة مرة أخرى.");
-                btn.disabled = false;
-                btn.innerText = "إرسال طلب الحجز";
-            }
-        }
-        // Timer Logic
-        function updateTimers() {
-            const start = new Date("Feb 1, 2026").getTime();
-            const end = new Date("Feb 1, 2029").getTime();
-            const now = new Date().getTime();
-
-            const calc = (target, id) => {
-                const diff = target - now;
-                if (diff < 0) return;
-                document.getElementById(id+'-days').innerText = Math.floor(diff/(1000*60*60*24));
-                document.getElementById(id+'-hours').innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-                document.getElementById(id+'-mins').innerText = Math.floor((diff%(1000*60*60))/(1000*60));
-                document.getElementById(id+'-secs').innerText = Math.floor((diff%(1000*60))/1000);
-            };
-            calc(start, 's'); calc(end, 'e');
-        }
-        setInterval(updateTimers, 1000);
-
-        function toggleLanguage() {
-            const isAr = document.documentElement.lang === "ar";
-            document.documentElement.lang = isAr ? "en" : "ar";
-            document.documentElement.dir = isAr ? "ltr" : "rtl";
-            document.getElementById('langBtn').innerText = isAr ? "العربية" : "English";
-            document.querySelectorAll('[data-en]').forEach(el => {
-                el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
-            });
-        }
-        // دالة عرض الفيديو
-function viewVideo(url) {
-    const overlay = document.getElementById('mediaOverlay');
-    const container = document.getElementById('mediaContainer');
-    container.innerHTML = `<iframe width="100%" height="500px" src="${url}" frameborder="0" allowfullscreen></iframe>`;
-    overlay.style.display = 'flex';
-}
-
-// دالة عرض الصور (معرض بسيط)
-let currentImgIndex = 0;
-let galleryImages = [];
-
-function viewGallery(images) {
-    galleryImages = images;
-    currentImgIndex = 0;
-    const overlay = document.getElementById('mediaOverlay');
+    // --- 1. وظائف الواجهة (القائمة واللايت بوكس) ---
+    function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const burger = document.getElementById('burgerMenu');
     
-    updateGalleryContent();
-    overlay.style.display = 'flex';
-
-    // منع التمرير في الصفحة الخلفية عند فتح المعرض
-    document.body.style.overflow = 'hidden';
+    // إضافة أو إزالة الكلاس النشط
+    nav.classList.toggle('nav-active');
+    
+    // تحويل شكل الخطوط إلى X
+    burger.classList.toggle('toggle');
 }
-
-function updateGalleryContent() {
-    const container = document.getElementById('mediaContainer');
-    container.innerHTML = `
-        <div class="gallery-wrapper" onclick="event.stopPropagation()">
-            <button class="nav-btn prev" onclick="changeImg(-1)">&#10094;</button>
-            <img src="${galleryImages[currentImgIndex]}" class="active-gallery-img" alt="Gallery Image">
-            <button class="nav-btn next" onclick="changeImg(1)">&#10095;</button>
-            <div class="gallery-counter">${currentImgIndex + 1} / ${galleryImages.length}</div>
-        </div>
-    `;
-}
-
-function changeImg(step) {
-    currentImgIndex += step;
-    if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
-    if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
-    updateGalleryContent();
-}
-
-// دالة إغلاق المعرض
-function closeMedia() {
-    const overlay = document.getElementById('mediaOverlay');
-    overlay.style.display = 'none';
-    document.getElementById('mediaContainer').innerHTML = '';
-    // إعادة تفعيل التمرير في الصفحة
-    document.body.style.overflow = 'auto';
-}
-
-// 1. إغلاق النافذة عند الضغط في أي مكان خارج الصورة (على الخلفية السوداء)
-window.onclick = function(event) {
-    const overlay = document.getElementById('mediaOverlay');
-    if (event.target == overlay) {
-        closeMedia();
+    function openLightbox(src) { 
+        document.getElementById('lb-img').src = src; 
+        document.getElementById('lightbox').style.display = 'flex'; 
+        document.body.style.overflow = 'hidden';
     }
-}
 
-// 2. إغلاق النافذة عند الضغط على زر Esc من لوحة المفاتيح
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-        closeMedia();
+    // --- 2. نظام إغلاق الوسائط (الحل النهائي للموبايل) ---
+    function closeMedia() {
+        const overlay = document.getElementById('mediaOverlay');
+        const lightbox = document.getElementById('lightbox');
+        
+        overlay.style.display = 'none';
+        lightbox.style.display = 'none';
+        document.getElementById('mediaContainer').innerHTML = '';
+        
+        // إعادة التمرير للصفحة (مهم جداً للموبايل)
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.position = 'static';
     }
-});
-// إغلاق النافذة
-function closeMedia() {
-    document.getElementById('mediaOverlay').style.display = 'none';
-    document.getElementById('mediaContainer').innerHTML = '';
-}
-    </script>
+
+    // --- 3. وظائف عرض الصور والفيديو ---
+    function viewVideo(url) {
+        const container = document.getElementById('mediaContainer');
+        container.innerHTML = `<iframe width="100%" height="315" src="${url}" frameborder="0" allowfullscreen style="border-radius:15px;"></iframe>`;
+        document.getElementById('mediaOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function viewGallery(images) {
+        galleryImages = images;
+        currentImgIndex = 0;
+        updateGalleryContent();
+        document.getElementById('mediaOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateGalleryContent() {
+        const container = document.getElementById('mediaContainer');
+        container.innerHTML = `
+            <div class="gallery-wrapper" onclick="event.stopPropagation()">
+                <button class="nav-btn prev" onclick="changeImg(-1)">&#10094;</button>
+                <img src="${galleryImages[currentImgIndex]}" class="active-gallery-img">
+                <button class="nav-btn next" onclick="changeImg(1)">&#10095;</button>
+                <div class="gallery-counter">${currentImgIndex + 1} / ${galleryImages.length}</div>
+            </div>
+        `;
+    }
+
+    function changeImg(step) {
+        currentImgIndex += step;
+        if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
+        if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
+        updateGalleryContent();
+    }
+
+    // --- 4. نظام الحجز (Steps) ---
+    function selectModel(m, s) {
+        currentModel = m;
+        currentSize = s;
+        document.getElementById('selModel').innerText = m;
+        document.getElementById('selSize').innerText = s;
+        showStep(2);
+    }
+
+    function showStep(n) {
+        document.querySelectorAll('.booking-step').forEach((s, i) => {
+            s.classList.toggle('active', i + 1 === n);
+        });
+        window.scrollTo(0, document.getElementById('booking').offsetTop - 100);
+    }
+
+    // --- 5. إرسال البيانات إلى Google Sheets ---
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const payload = {
+            name: document.getElementById('userName').value.trim(),
+            email: document.getElementById('userEmail').value.trim(),
+            model: currentModel,
+            size: currentSize,
+            phone: document.getElementById('userPhone').value.trim(),
+            notes: document.getElementById('userNotes').value.trim()
+        };
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyqE4v-_YWCJN2xK6Gxhy5PIHvwNjYYNUtGND2GnNy1nwvh2QO9PqxNraWlFKQ2KK9c9w/exec';
+        
+        btn.disabled = true;
+        btn.innerText = "جاري تأمين الحجز...";
+
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            });
+            showStep(3);
+        } catch (error) {
+            alert("حدث خطأ، حاول مجدداً");
+            btn.disabled = false;
+        }
+    }
+
+    // --- 6. التايمر واللغة ---
+    function updateTimers() {
+        const start = new Date("Feb 1, 2026").getTime();
+        const end = new Date("Feb 1, 2029").getTime();
+        const now = new Date().getTime();
+
+        const calc = (target, id) => {
+            const diff = target - now;
+            if (diff < 0) return;
+            document.getElementById(id+'-days').innerText = Math.floor(diff/(1000*60*60*24));
+            document.getElementById(id+'-hours').innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+            document.getElementById(id+'-mins').innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+            document.getElementById(id+'-secs').innerText = Math.floor((diff%(1000*60))/1000);
+        };
+        calc(start, 's'); calc(end, 'e');
+    }
+    setInterval(updateTimers, 1000);
+
+    function toggleLanguage() {
+        const isAr = document.documentElement.lang === "ar";
+        document.documentElement.lang = isAr ? "en" : "ar";
+        document.documentElement.dir = isAr ? "ltr" : "rtl";
+        document.getElementById('langBtn').innerText = isAr ? "العربية" : "English";
+        document.querySelectorAll('[data-en]').forEach(el => {
+            el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+        });
+    }
+
+    // --- 7. مستمعي الأحداث (إغلاق بالخارج وبزر Esc) ---
+    window.onclick = function(event) {
+        if (event.target.id === 'mediaOverlay' || event.target.id === 'lightbox') {
+            closeMedia();
+        }
+    }
+    document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeMedia(); });
+</script>
     <div id="mediaOverlay" class="media-overlay">
     <div class="media-content">
         <span class="close-media" onclick="closeMedia()">&times;</span>

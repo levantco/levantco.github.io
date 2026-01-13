@@ -24,12 +24,58 @@ body {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* Navigation */
+/* السطر 26 تقريباً: إصلاح النبار */
+
 .navbar {
-    position: fixed; top: 0; width: 100%;
-    background: rgba(255,255,255,0.98);
-    z-index: 1000; padding: 10px 0;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%;
+    background: #ffffff !important; /* ضمان أن تكون الخلفية بيضاء تماماً */
+    z-index: 9999 !important; /* رفعه فوق كل عناصر الصفحة والمعرض */
+    padding: 10px 0;
     border-bottom: 4px solid var(--gold);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* إصلاح حجم الصور في الموبايل لسهولة الإغلاق */
+@media (max-width: 768px) {
+    /* 1. إظهار زر البرجر */
+    .burger {
+        display: block !important;
+    }
+
+    /* 2. تنسيق القائمة الجانبية */
+    .nav-links {
+        display: flex !important; /* تأكد أن هذه الكلمة موجودة وليست none */
+        position: fixed;
+        right: -100%; /* تكون مخفية خلف الشاشة جهة اليمين */
+        top: 0;
+        height: 100vh;
+        width: 75%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s ease-in-out;
+        box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+        z-index: 10000;
+    }
+
+    /* 3. الكلاس الذي يتم تفعيله عند الضغط على الزر */
+    .nav-links.nav-active {
+        right: 0; /* تتحرك القائمة لتظهر داخل الشاشة */
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    /* 4. تصغير حجم اللوجو في الموبايل */
+    .main-logo {
+        height: 60px;
+    }
 }
 
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
@@ -220,12 +266,6 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.active-gallery-img {
-    max-width: 100%;
-    max-height: 80vh; /* لا تتجاوز طول الشاشة */
-    object-fit: contain;
-    transition: 0.3s transform;
-}
 
 /* أزرار التنقل */
 .nav-btn {
@@ -258,9 +298,10 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 }
 .active-gallery-img {
     max-width: 100%;
-    max-height: 85vh;
+    max-height: 70vh;
     object-fit: contain;
     animation: fadeIn 0.4s ease-in-out;
+    transition: 0.3s transform;
 }
 
 @keyframes fadeIn {
@@ -271,4 +312,30 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 .gallery-wrapper {
     background: transparent; /* لتبدو الصورة وكأنها طافية */
     box-shadow: none;
+}
+
+/* إظهار زر البرجر وتنسيقه */
+.burger {
+    display: none; /* مخفي في الكمبيوتر */
+    cursor: pointer;
+    z-index: 10005 !important;
+    padding: 5px;
+}
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #A67C00; /* اللون الذهبي الخاص بك */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* تأثير تحويل البرجر إلى X (جماليات) */
+.burger.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.burger.toggle .line2 {
+    opacity: 0;
+}
+.burger.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
