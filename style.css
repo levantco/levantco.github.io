@@ -339,3 +339,22 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 .burger.toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+/* تأثيرات اللوجو الرئيسي */
+.main-logo {
+    height: 85px; /* الحجم الذي اخترته سابقاً */
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* حركة ناعمة */
+    cursor: pointer;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* ظل خفيف افتراضي */
+}
+
+.main-logo:hover {
+    transform: scale(1.08) translateY(-3px); /* تكبير بسيط وارتفاع للأعلى */
+    filter: drop-shadow(0 10px 20px rgba(173, 131, 4, 0.791)) brightness(1.1); 
+    /* توهج ذهبي (Shadow) خلف اللوجو مع زيادة الإضاءة */
+}
+
+/* حركة "النبض" اللطيفة عند مرور الماوس */
+.logo a {
+    display: inline-block;
+    text-decoration: none;
+}

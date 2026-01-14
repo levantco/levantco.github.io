@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levantco LCR | ليفانتكو ال سي آر</title>
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1Y10V6eTauMLLrJpwySCWKa_G_Y4DG61z&sz=w32">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -11,13 +12,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <!-- Header & Navigation -->
     <nav class="navbar">
     <div class="container nav-wrapper">
         <div class="logo">
-            <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" alt="Levantco LCR Logo" class="main-logo">
-        </div>
+    <a href="#home">
+        <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" alt="Levantco LCR Logo" class="main-logo">
+    </a>
+</div>
         
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="active" data-en="Home" data-ar="الرئيسية" onclick="toggleMenu()">الرئيسية</a></li>
@@ -290,7 +292,6 @@
         document.documentElement.style.overflow = 'auto';
         document.body.style.position = 'static';
     }
-
     // --- 3. وظائف عرض الصور والفيديو ---
     function viewVideo(url) {
         const container = document.getElementById('mediaContainer');
@@ -298,7 +299,6 @@
         document.getElementById('mediaOverlay').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
-
     function viewGallery(images) {
         galleryImages = images;
         currentImgIndex = 0;
