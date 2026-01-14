@@ -27,17 +27,16 @@ body {
 /* السطر 26 تقريباً: إصلاح النبار */
 
 .navbar {
-    position: fixed; 
-    top: 0; 
-    left: 0;
+    position: fixed;
+    top: 0;
     width: 100%;
-    background: #ffffff !important; /* ضمان أن تكون الخلفية بيضاء تماماً */
-    z-index: 9999 !important; /* رفعه فوق كل عناصر الصفحة والمعرض */
-    padding: 10px 0;
-    border-bottom: 4px solid var(--gold);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.98); /* خلفية بيضاء شفافة قليلاً */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    height: 90px; /* توحيد ارتفاع الهيدر */
+    display: flex;
+    align-items: center; /* توسيط العناصر عمودياً */
 }
-
 
 /* إصلاح حجم الصور في الموبايل لسهولة الإغلاق */
 @media (max-width: 768px) {
@@ -78,17 +77,43 @@ body {
     }
 }
 
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-
-.main-logo { height: 85px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
-
-.nav-links { display: flex; list-style: none; }
-.nav-links li { margin: 0 15px; }
-.nav-links a { 
-    text-decoration: none; color: var(--dark); font-weight: 700; 
-    font-size: 1rem; transition: var(--transition);
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between; /* توزيع اللوجو في طرف والقوائم في طرف */
+    align-items: center;
+    width: 100%;
+    padding: 0 5%; /* مساحة أمان جانبية */
 }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* توسيط الروابط عمودياً */
+    gap: 30px; /* مسافة ثابتة ومتساوية بين الروابط */
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s;
+    padding: 10px 0;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #A67C00; /* لون ذهبي */
+}
+
 
 /* Hero */
 .hero {
@@ -341,14 +366,14 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 }
 /* تأثيرات اللوجو الرئيسي */
 .main-logo {
-    height: 85px; /* الحجم الذي اخترته سابقاً */
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* حركة ناعمة */
-    cursor: pointer;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* ظل خفيف افتراضي */
+    height: 70px; /* حجم مناسب جداً للهيدر */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
 .main-logo:hover {
-    transform: scale(1.08) translateY(-3px); /* تكبير بسيط وارتفاع للأعلى */
+    transform: scale(1.05) translateY(-3px); /* تكبير بسيط وارتفاع للأعلى */
     filter: drop-shadow(0 10px 20px rgba(173, 131, 4, 0.791)) brightness(1.1); 
     /* توهج ذهبي (Shadow) خلف اللوجو مع زيادة الإضاءة */
 }
@@ -357,4 +382,36 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 .logo a {
     display: inline-block;
     text-decoration: none;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* حاوية اللوجو في الأسفل */
+.footer-logo-wrapper {
+    background: white; /* خلفية بيضاء لبروز اللوجو */
+    padding: 15px;
+    border-radius: 12px; /* زوايا ناعمة */
+    display: inline-block;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* ظل ليعطي عمق */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo-wrapper:hover {
+    transform: translateY(-5px); /* حركة بسيطة عند التمرير */
+}
+
+.footer-logo {
+    height: 70px; /* حجم مناسب */
+    width: auto;
+    display: block;
+    filter: brightness(1.1); /* زيادة الإضاءة قليلاً */
 }
