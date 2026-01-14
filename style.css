@@ -10,6 +10,7 @@
     --light-gold: #F4EBD0;
     --white: #FFFFFF;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --black: #000000;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -30,10 +31,11 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.98); /* خلفية بيضاء شفافة قليلاً */
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    background: var(--black); /* خلفية بيضاء شفافة قليلاً */
+    border-bottom: 2px solid #A67C00;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     z-index: 1000;
-    height: 90px; /* توحيد ارتفاع الهيدر */
+    height: 100px; /* توحيد ارتفاع الهيدر */
     display: flex;
     align-items: center; /* توسيط العناصر عمودياً */
 }
@@ -79,10 +81,12 @@ body {
 
 .nav-wrapper {
     display: flex;
-    justify-content: space-between; /* توزيع اللوجو في طرف والقوائم في طرف */
+    justify-content: flex-start; /* توزيع اللوجو في طرف والقوائم في طرف */
     align-items: center;
     width: 100%;
-    padding: 0 5%; /* مساحة أمان جانبية */
+    max-width: 1300px; /* يحافظ على المحتوى في المنتصف ولا يتركه يلتصق بحواف الشاشة */
+    margin: 20px ; 
+    padding: 20px; /* مسافة أمان صغيرة من الجوانب */
 }
 
 
@@ -92,8 +96,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center; /* توسيط الروابط عمودياً */
-    gap: 30px; /* مسافة ثابتة ومتساوية بين الروابط */
+    gap: 25px; /* مسافة ثابتة ومتساوية بين الروابط */
 }
 
 .nav-links li {
@@ -103,15 +106,20 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: color 0.3s;
+
     padding: 10px 0;
+
+    color: #ffffff !important; /* نصوص بيضاء نقية */
+    font-family: 'Cairo', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: #A67C00; /* لون ذهبي */
+    color: #D4AF37 !important; /* لون ذهبي لامع */
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* توهج بسيط */
 }
 
 
@@ -373,10 +381,12 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 }
 /* تأثيرات اللوجو الرئيسي */
 .main-logo {
-    height: 70px; /* حجم مناسب جداً للهيدر */
+    height: 85px; /* تكبير اللوجو ليظهر تفاصيل الحروف */
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
+    
 }
 
 .main-logo:hover {
@@ -391,9 +401,12 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     text-decoration: none;
 }
 .logo {
+    margin-left: 30px; /* هذا هو الفاصل الصغير الذي طلبته */
     display: flex;
     align-items: center;
     height: 100%;
+    margin-right: 0;
+    margin-left: auto;
 }
 /* إخفاء القائمة المنسدلة بشكل افتراضي */
 .dropdown-content {
@@ -402,9 +415,10 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     top: 100%; /* تظهر أسفل الرابط مباشرة */
     left: 50%; /* نبدأ من المنتصف */
     transform: translateX(-50%); /* نزيحها لليسار بنسبة 50% لتتوسط الكلمة تماماً */
-    background-color: #fff;
+    background-color: #0a0a0a; /* أسود داكن جداً */
     min-width: 180px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #A67C00;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     border-radius: 4px;
     padding: 10px 0;
     z-index: 9999;
@@ -448,7 +462,7 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 
 /* تنسيق الروابط داخل القائمة */
 .dropdown-content a {
-    color: #333;
+    color: #eee !important;
     padding: 12px 20px;
     text-decoration: none;
     display: block;
@@ -458,8 +472,8 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 
 /* تغيير اللون عند تمرير الماوس فوق الرابط الداخلي */
 .dropdown-content a:hover {
-    background-color: #f9f9f9;
-    color: #A67C00;
+    background-color: #1a1a1a;
+    color: #A67C00 !important;
 }
 
 /* أنيميشن بسيط لجعل الظهور يبدو احترافياً */
