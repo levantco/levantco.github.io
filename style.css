@@ -118,7 +118,8 @@ body {
 /* Hero */
 .hero {
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('assets/hero.png') no-repeat center center/cover;
     display: flex; align-items: center; position: relative;
 }
 .hero-overlay {
@@ -138,7 +139,13 @@ body {
 .btn-outline:hover { background: var(--gold); color: var(--white); }
 
 /* Countdown Section */
-.countdown-section { background: var(--light-gold); padding: 80px 0; }
+.countdown-section {
+    padding: 60px 0; /* تحكم في المسافة الداخلية للقسم */
+    margin-top: 0 !important; /* إلغاء أي مسافة علوية كانت موجودة */
+    background: var(--light-gold); /* أو لون خلفية القسم */
+    position: relative;
+    z-index: 10;
+}
 .countdown-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .countdown-item h3 { text-align: center; color: var(--deep-gold); margin-bottom: 30px; font-size: 1.3rem; }
 .timer-grid { display: flex; justify-content: center; gap: 15px; }
@@ -388,10 +395,83 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     align-items: center;
     height: 100%;
 }
+/* إخفاء القائمة المنسدلة بشكل افتراضي */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* تظهر أسفل الرابط مباشرة */
+    left: 50%; /* نبدأ من المنتصف */
+    transform: translateX(-50%); /* نزيحها لليسار بنسبة 50% لتتوسط الكلمة تماماً */
+    background-color: #fff;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 10px 0;
+    z-index: 9999;
+    border-top: 3px solid #A67C00;
+}
 .dropdown {
-    position: relative;
+    position: relative; /* هذا السطر هو الأهم، ليتم حساب موقع القائمة بناءً عليه */
+    display: inline-block;
+}
+
+.nav-links li.dropdown {
     display: flex;
     align-items: center;
+}
+/* إظهار القائمة عند مرور الماوس فوق العنصر الأب (dropdown) */
+.dropdown:hover .dropdown-content {
+   display: block;
+    /* استخدم opacity للظهور الناعم بدل الـ transform لتجنب القفزة */
+    animation: fadeInSimple 0.2s ease-in-out;
+}
+@keyframes fadeInSimple {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.dropdown:hover .fa-chevron-down {
+    transform: rotate(180deg);
+}
+.dropbtn i {
+    margin-right: 8px; /* مسافة بسيطة من اليمين */
+    font-size: 0.8rem; /* تصغير السهم قليلاً ليكون أكثر أناقة */
+    transition: transform 0.3s ease; /* لإضافة حركة التفاف للسهم مستقبلاً */
+}
+.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px; /* جسر وهمي يمنع انقطاع الحوّم بين الكلمة والقائمة */
+}
+
+/* تنسيق الروابط داخل القائمة */
+.dropdown-content a {
+    color: #333;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* تغيير اللون عند تمرير الماوس فوق الرابط الداخلي */
+.dropdown-content a:hover {
+    background-color: #f9f9f9;
+    color: #A67C00;
+}
+
+/* أنيميشن بسيط لجعل الظهور يبدو احترافياً */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* حاوية اللوجو في الأسفل */
@@ -414,4 +494,43 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     width: auto;
     display: block;
     filter: brightness(1.1); /* زيادة الإضاءة قليلاً */
+}
+.project-hero {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* ارتفاع القسم، يمكنك جعله 100vh ليكون كامل الشاشة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* ليكون خلف النص */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* لضمان ملء المساحة بدون تشويه */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* طبقة تعتيم ليظهر النص بوضوح */
+    z-index: 0;
+}
+
+.project-hero-content {
+    position: relative;
+    z-index: 1; /* فوق التعتيم والفيديو */
 }
