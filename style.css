@@ -1,7 +1,13 @@
 /* Professional Gold Theme - High Contrast
    Colors: Dark Royal Gold (#A67C00), Rich Black (#0D0D0D), Golden Beige (#F4EBD0)
 */
-
+@font-face {
+    font-family: 'CadillacBold';
+    src: url('assets/fonts/Cadillac-Sans-Arabic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
 :root {
     --gold: #A67C00;
     --gold-bright: #D4AF37;
@@ -11,6 +17,22 @@
     --white: #FFFFFF;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     --black: #000000;
+}
+/* العناوين الكبيرة في قسم الهيرو */
+.hero h1, .project-hero h1 {
+    font-family: 'CadillacBold', sans-serif !important;
+    letter-spacing: 0; /* الخطوط العربية لا تحتاج تباعد حروف */
+}
+
+/* العناوين الجانبية وأسماء الأقسام */
+.section-header h2, .countdown-item h3 {
+    font-family: 'CadillacBold', sans-serif;
+}
+
+/* إذا أردت استخدامه للروابط أيضاً لزيادة الهوية البصرية */
+.nav-links a {
+    font-family: 'CadillacBold', sans-serif;
+    font-weight: normal; /* لأن الخط نفسه "Bold" بطبيعته */
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -45,40 +67,41 @@ body {
     /* 1. إظهار زر البرجر */
     .burger {
         display: block !important;
+        cursor: pointer;
+        z-index: 10001;
     }
 
-    /* 2. تنسيق القائمة الجانبية */
+    /* 2. القائمة: تبدأ من وضعية "خارج الشاشة" (right: -100%) */
     .nav-links {
-        display: flex !important; /* تأكد أن هذه الكلمة موجودة وليست none */
         position: fixed;
-        right: -100%; /* تكون مخفية خلف الشاشة جهة اليمين */
+        right: -100%; 
         top: 0;
         height: 100vh;
         width: 75%;
-        background: white;
+        background-color: #000000;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: 0.5s ease-in-out;
-        box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+        transition: right 0.4s ease-in-out; /* حركة الانزلاق */
         z-index: 10000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
 
-    /* 3. الكلاس الذي يتم تفعيله عند الضغط على الزر */
+    /* 3. هذه هي "الدالة" التي تجعل القائمة تظهر */
     .nav-links.nav-active {
-        right: 0; /* تتحرك القائمة لتظهر داخل الشاشة */
+        right: 0 !important;
     }
 
-    .nav-links li {
-        margin: 20px 0;
-    }
-
-    /* 4. تصغير حجم اللوجو في الموبايل */
-    .main-logo {
-        height: 60px;
+    /* 4. تعديل مكان اللوجو والبرجر ليكونوا على الأطراف */
+    .nav-wrapper {
+        justify-content: space-between !important;
+        flex-direction: row !important; /* اللوجو يمين والبرجر يسار */
+        margin: 0;
+        padding: 0 20px;
+        width: 100%;
     }
 }
-
 .nav-wrapper {
     display: flex;
     justify-content: flex-start; /* توزيع اللوجو في طرف والقوائم في طرف */
@@ -226,7 +249,7 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 @media (max-width: 768px) {
     .countdown-wrapper, .form-row { grid-template-columns: 1fr; }
     .timer-grid { flex-wrap: wrap; }
-    .nav-links { display: none; }
+
 }
 /* تنسيق أزرار الملحقات داخل البطاقة */
 .model-actions {
