@@ -154,7 +154,7 @@ body {
     align-items: center;
     height: 100%;
     /* احذف margin-left: auto تماماً */
-    margin-left: 0; 
+    margin-left: 100px; 
     /* اجعل اللوجو هو أول عنصر من اليمين */
     margin-right: 0; 
 }
