@@ -104,12 +104,15 @@ body {
 }
 .nav-wrapper {
     display: flex;
-    justify-content: flex-start; /* توزيع اللوجو في طرف والقوائم في طرف */
+    /* التعديل هنا: بداية العناصر من اليمين (لأن الموقع RTL) */
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
-    max-width: 1300px; /* يحافظ على المحتوى في المنتصف ولا يتركه يلتصق بحواف الشاشة */
-    margin: 20px ; 
-    padding: 20px; /* مسافة أمان صغيرة من الجوانب */
+    max-width: 1300px;
+    margin: 0 auto; /* لتوسط الحاوية في الشاشة */
+    padding: 20px;
+    /* نضمن أن اتجاه العناصر يبدأ من اليمين لليسار */
+    direction: rtl; 
 }
 
 
@@ -119,7 +122,9 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 25px; /* مسافة ثابتة ومتساوية بين الروابط */
+    gap: 25px;
+    /* أضف هذا السطر للتحكم في بعد القائمة عن اللوجو */
+    margin-right: 40px; 
 }
 
 .nav-links li {
@@ -144,7 +149,15 @@ body {
     color: #D4AF37 !important; /* لون ذهبي لامع */
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* توهج بسيط */
 }
-
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* احذف margin-left: auto تماماً */
+    margin-left: 0; 
+    /* اجعل اللوجو هو أول عنصر من اليمين */
+    margin-right: 0; 
+}
 
 /* Hero */
 .hero {
@@ -513,14 +526,7 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     display: inline-block;
     text-decoration: none;
 }
-.logo {
-    margin-left: 30px; /* هذا هو الفاصل الصغير الذي طلبته */
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-right: 0;
-    margin-left: auto;
-}
+
 /* إخفاء القائمة المنسدلة بشكل افتراضي */
 .dropdown-content {
     display: none;
