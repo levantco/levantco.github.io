@@ -62,46 +62,8 @@ body {
     align-items: center; /* توسيط العناصر عمودياً */
 }
 
-/* إصلاح حجم الصور في الموبايل لسهولة الإغلاق */
-@media (max-width: 768px) {
-    /* 1. إظهار زر البرجر */
-    .burger {
-        display: block !important;
-        cursor: pointer;
-        z-index: 10001;
-    }
 
-    /* 2. القائمة: تبدأ من وضعية "خارج الشاشة" (right: -100%) */
-    .nav-links {
-        position: fixed;
-        right: -100%; 
-        top: 0;
-        height: 100vh;
-        width: 75%;
-        background-color: #000000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: right 0.4s ease-in-out; /* حركة الانزلاق */
-        z-index: 10000;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    }
 
-    /* 3. هذه هي "الدالة" التي تجعل القائمة تظهر */
-    .nav-links.nav-active {
-        right: 0 !important;
-    }
-
-    /* 4. تعديل مكان اللوجو والبرجر ليكونوا على الأطراف */
-    .nav-wrapper {
-        justify-content: space-between !important;
-        flex-direction: row !important; /* اللوجو يمين والبرجر يسار */
-        margin: 0;
-        padding: 0 20px;
-        width: 100%;
-    }
-}
 .nav-wrapper {
     display: flex;
     /* التعديل هنا: بداية العناصر من اليمين (لأن الموقع RTL) */
@@ -112,7 +74,7 @@ body {
     margin: 0 auto; /* لتوسط الحاوية في الشاشة */
     padding: 20px;
     /* نضمن أن اتجاه العناصر يبدأ من اليمين لليسار */
-    direction: rtl; 
+    direction: rtl !important; 
 }
 
 
@@ -349,11 +311,7 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     }
 }
 
-@media (max-width: 768px) {
-    .countdown-wrapper, .form-row { grid-template-columns: 1fr; }
-    .timer-grid { flex-wrap: wrap; }
 
-}
 /* تنسيق أزرار الملحقات داخل البطاقة */
 .model-actions {
     display: flex;
@@ -765,8 +723,89 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     transform: scale(1.15) rotate(10deg);
 }
 
-/* تعديل للموبايل */
+/* --- كتلة التنسيق الموحدة للهواتف والجوال --- */
 @media (max-width: 768px) {
-    .social-icon { width: 50px; height: 50px; font-size: 1.4rem; }
-    .whatsapp-float { width: 55px; height: 55px; font-size: 30px; bottom: 20px; right: 20px; }
+    
+    /* 1. الملاحة والقائمة الجانبية (Navigation) */
+    .burger {
+        display: block !important;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%; 
+        top: 0;
+        height: 100vh;
+        width: 75%;
+        background-color: #000000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.4s ease-in-out;
+        z-index: 10000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.nav-active {
+        right: 0 !important;
+    }
+
+    .nav-wrapper {
+        justify-content: space-between !important;
+        flex-direction: row !important; /* اللوجو يمين والبرجر يسار */
+        margin: 0;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* 2. تحسينات الأزرار (إصلاح التلاصق) */
+    .hero-content .btn, 
+    .project-hero-content .btn {
+        display: block; 
+        width: 100%;    /* تجعل الأزرار مريحة للضغط بالإبهام في الجوال */
+        margin-bottom: 15px !important; /* مسافة رأسية تمنع التلاصق */
+        text-align: center;
+    }
+
+    .hero-content .btn:last-child,
+    .project-hero-content .btn:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* 3. تنسيق الشبكات والجداول (Grids) */
+    .countdown-wrapper, 
+    .form-row { 
+        grid-template-columns: 1fr; 
+    }
+
+    .timer-grid { 
+        flex-wrap: wrap; 
+        gap: 10px;
+        justify-content: center;
+    }
+
+    /* 4. أيقونات التواصل الاجتماعي والواتساب */
+    .social-icon { 
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.4rem; 
+    }
+
+    .whatsapp-float { 
+        width: 55px; 
+        height: 55px; 
+        font-size: 30px; 
+        bottom: 20px; 
+        right: 20px; 
+    }
+
+    /* 5. تحسينات النصوص في الهيرو للجوال */
+    .hero h1 {
+        font-size: 2.5rem; /* تصغير العنوان قليلاً ليناسب الشاشة الصغيرة */
+    }
 }
+
+
