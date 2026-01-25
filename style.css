@@ -25,7 +25,7 @@
 }
 
 /* العناوين الجانبية وأسماء الأقسام */
-.section-header h2, .countdown-item h3 {
+.section-header h2, .section-header h1,.section-header h3,.section-header h4,.section-header h5 ,.section-header h6 .countdown-item h3 {
     font-family: 'CadillacBold', sans-serif;
 }
 
@@ -62,54 +62,19 @@ body {
     align-items: center; /* توسيط العناصر عمودياً */
 }
 
-/* إصلاح حجم الصور في الموبايل لسهولة الإغلاق */
-@media (max-width: 768px) {
-    /* 1. إظهار زر البرجر */
-    .burger {
-        display: block !important;
-        cursor: pointer;
-        z-index: 10001;
-    }
 
-    /* 2. القائمة: تبدأ من وضعية "خارج الشاشة" (right: -100%) */
-    .nav-links {
-        position: fixed;
-        right: -100%; 
-        top: 0;
-        height: 100vh;
-        width: 75%;
-        background-color: #000000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: right 0.4s ease-in-out; /* حركة الانزلاق */
-        z-index: 10000;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    }
 
-    /* 3. هذه هي "الدالة" التي تجعل القائمة تظهر */
-    .nav-links.nav-active {
-        right: 0 !important;
-    }
-
-    /* 4. تعديل مكان اللوجو والبرجر ليكونوا على الأطراف */
-    .nav-wrapper {
-        justify-content: space-between !important;
-        flex-direction: row !important; /* اللوجو يمين والبرجر يسار */
-        margin: 0;
-        padding: 0 20px;
-        width: 100%;
-    }
-}
 .nav-wrapper {
     display: flex;
-    justify-content: flex-start; /* توزيع اللوجو في طرف والقوائم في طرف */
+    /* التعديل هنا: بداية العناصر من اليمين (لأن الموقع RTL) */
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
-    max-width: 1300px; /* يحافظ على المحتوى في المنتصف ولا يتركه يلتصق بحواف الشاشة */
-    margin: 20px ; 
-    padding: 20px; /* مسافة أمان صغيرة من الجوانب */
+    max-width: 1300px;
+    margin: 0 auto; /* لتوسط الحاوية في الشاشة */
+    padding: 20px;
+    /* نضمن أن اتجاه العناصر يبدأ من اليمين لليسار */
+    direction: rtl !important; 
 }
 
 
@@ -119,7 +84,9 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 25px; /* مسافة ثابتة ومتساوية بين الروابط */
+    gap: 25px;
+    /* أضف هذا السطر للتحكم في بعد القائمة عن اللوجو */
+    margin-right: 40px; 
 }
 
 .nav-links li {
@@ -144,7 +111,15 @@ body {
     color: #D4AF37 !important; /* لون ذهبي لامع */
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* توهج بسيط */
 }
-
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* احذف margin-left: auto تماماً */
+    margin-left: 100px; 
+    /* اجعل اللوجو هو أول عنصر من اليمين */
+    margin-right: 0; 
+}
 
 /* Hero */
 .hero {
@@ -177,7 +152,89 @@ body {
     position: relative;
     z-index: 10;
 }
-.countdown-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.countdown-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    direction: rtl;
+    padding: 20px;
+}
+.section-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+.section-card h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* قائمة القسم السكني */
+.residential-list {
+    list-style: none;
+    padding: 0;
+}
+
+.residential-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+}
+.timer-grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة في كل صف */
+    gap: 15px;
+}
+
+.residential-list li i {
+    color: #e67e22; /* لون ذهبي/برتقالي للفخامة */
+    margin-top: 5px;
+}
+.time-box2 {
+    background: #fdfdfd;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 15px 5px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.time-box2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #3498db;
+}
+
+.time-box2 i {
+    font-size: 1.2rem;
+    color: #3498db;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.time-box2 .num {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #222;
+    line-height: 1;
+}
+
+.time-box2 small {
+    font-size: 0.75rem;
+    color: #777;
+    display: block;
+    margin-top: 5px;
+}
+
 .countdown-item h3 { text-align: center; color: var(--deep-gold); margin-bottom: 30px; font-size: 1.3rem; }
 .timer-grid { display: flex; justify-content: center; gap: 15px; }
 .time-box { 
@@ -212,6 +269,7 @@ body {
 .model-box .badge { position: absolute; top: 20px; left: 20px; background: var(--gold); color: #fff; padding: 6px 18px; border-radius: 5px; font-weight: 700; z-index: 2; }
 .model-box.vip { border: 3px solid var(--gold); }
 
+
 /* Booking Card & Form */
 .booking-card { max-width: 850px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-top: 8px solid var(--gold); }
 .summary-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid var(--light-gold); }
@@ -244,13 +302,16 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
 @media (max-width: 992px) {
     .hero h1 { font-size: 3rem; }
     .jannati-content { grid-template-columns: 1fr; }
+    .countdown-wrapper {
+        grid-template-columns: 1fr; /* عمود واحد في الشاشات الصغيرة */
+    }
+    
+    .timer-grid2 {
+        grid-template-columns: repeat(2, 1fr); /* عمودين للمربعات الصغيرة في الموبايل */
+    }
 }
 
-@media (max-width: 768px) {
-    .countdown-wrapper, .form-row { grid-template-columns: 1fr; }
-    .timer-grid { flex-wrap: wrap; }
 
-}
 /* تنسيق أزرار الملحقات داخل البطاقة */
 .model-actions {
     display: flex;
@@ -423,14 +484,7 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     display: inline-block;
     text-decoration: none;
 }
-.logo {
-    margin-left: 30px; /* هذا هو الفاصل الصغير الذي طلبته */
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-right: 0;
-    margin-left: auto;
-}
+
 /* إخفاء القائمة المنسدلة بشكل افتراضي */
 .dropdown-content {
     display: none;
@@ -571,3 +625,186 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     position: relative;
     z-index: 1; /* فوق التعتيم والفيديو */
 }
+
+/*************************************************/
+/* تنسيق قسم الفيديوهات */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.video-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.video-card iframe {
+    width: 100%;
+    height: 250px;
+}
+
+.video-card p {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* تنسيق أيقونات التواصل الاجتماعي */
+.social-connect {
+    padding: 60px 0;
+    background: #fdfdfd;
+    text-align: center;
+}
+
+.social-links-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* الألوان الخاصة بكل منصة */
+.facebook { background: #1877F2; }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.tiktok { background: #000000; }
+.youtube { background: #FF0000; }
+
+.social-icon:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+/* تنسيق زر الواتساب العائم */
+.whatsapp-float {
+    text-decoration: none !important; /* هذا السطر يلغي الخط تماماً */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* ليكون في جهة اليد اليمنى للمستخدم */
+    background-color: #25d366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    text-decoration: none !important;
+    transform: scale(1.15) rotate(10deg);
+}
+
+/* --- كتلة التنسيق الموحدة للهواتف والجوال --- */
+@media (max-width: 768px) {
+    
+    /* 1. الملاحة والقائمة الجانبية (Navigation) */
+    .burger {
+        display: block !important;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%; 
+        top: 0;
+        height: 100vh;
+        width: 75%;
+        background-color: #000000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.4s ease-in-out;
+        z-index: 10000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.nav-active {
+        right: 0 !important;
+    }
+
+    .nav-wrapper {
+        justify-content: space-between !important;
+        flex-direction: row !important; /* اللوجو يمين والبرجر يسار */
+        margin: 0;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* 2. تحسينات الأزرار (إصلاح التلاصق) */
+    .hero-content .btn, 
+    .project-hero-content .btn {
+        display: block; 
+        width: 100%;    /* تجعل الأزرار مريحة للضغط بالإبهام في الجوال */
+        margin-bottom: 15px !important; /* مسافة رأسية تمنع التلاصق */
+        text-align: center;
+    }
+
+    .hero-content .btn:last-child,
+    .project-hero-content .btn:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* 3. تنسيق الشبكات والجداول (Grids) */
+    .countdown-wrapper, 
+    .form-row { 
+        grid-template-columns: 1fr; 
+    }
+
+    .timer-grid { 
+        flex-wrap: wrap; 
+        gap: 10px;
+        justify-content: center;
+    }
+
+    /* 4. أيقونات التواصل الاجتماعي والواتساب */
+    .social-icon { 
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.4rem; 
+    }
+
+    .whatsapp-float { 
+        width: 55px; 
+        height: 55px; 
+        font-size: 30px; 
+        bottom: 20px; 
+        right: 20px; 
+    }
+
+    /* 5. تحسينات النصوص في الهيرو للجوال */
+    .hero h1 {
+        font-size: 2.5rem; /* تصغير العنوان قليلاً ليناسب الشاشة الصغيرة */
+    }
+}
+
