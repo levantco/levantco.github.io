@@ -888,13 +888,18 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
         font-size: 1.4rem; 
     }
 
-    .whatsapp-float { 
-        width: 55px; 
-        height: 55px; 
-        font-size: 30px; 
-        bottom: 20px; 
-        right: 20px; 
+    .whatsapp-float {
+        bottom: 20px;
+        left: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
     }
+    html[lang="en"] .whatsapp-float {
+        left: auto !important;
+        right: 20px !important;
+    }
+
 
     /* 5. تحسينات النصوص في الهيرو للجوال */
     .hero h1 {
