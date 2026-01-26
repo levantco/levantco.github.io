@@ -67,14 +67,15 @@ body {
 .nav-wrapper {
     display: flex;
     /* التعديل هنا: بداية العناصر من اليمين (لأن الموقع RTL) */
-    justify-content: flex-start; 
+    /* justify-content: flex-start; */
     align-items: center;
     width: 100%;
     max-width: 1300px;
     margin: 0 auto; /* لتوسط الحاوية في الشاشة */
     padding: 20px;
+    justify-content: space-between;
     /* نضمن أن اتجاه العناصر يبدأ من اليمين لليسار */
-    direction: rtl !important; 
+    /*direction: rtl !important; */
 }
 
 
@@ -86,7 +87,7 @@ body {
     padding: 0;
     gap: 25px;
     /* أضف هذا السطر للتحكم في بعد القائمة عن اللوجو */
-    margin-right: 40px; 
+    /*margin-right: 40px; */
 }
 
 .nav-links li {
@@ -100,7 +101,8 @@ body {
     padding: 10px 0;
 
     color: #ffffff !important; /* نصوص بيضاء نقية */
-    font-family: 'Cairo', sans-serif;
+    font-family: 'CadillacBold', 'Cairo', sans-serif; /* اجعل الكاديلاك هو الأول */
+    font-size: 1rem;
     font-weight: 400;
     font-size: 1.1rem;
     letter-spacing: 0.5px;
@@ -116,7 +118,7 @@ body {
     align-items: center;
     height: 100%;
     /* احذف margin-left: auto تماماً */
-    margin-left: 100px; 
+   /* margin-left: 100px; */
     /* اجعل اللوجو هو أول عنصر من اليمين */
     margin-right: 0; 
 }
@@ -815,3 +817,45 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     }
 }
 
+/* دعم اللغات - التبديل التلقائي */
+
+/* عندما تكون اللغة إنجليزية */
+html[lang="en"] body {
+    direction: ltr;
+    text-align: left;
+}
+
+html[lang="en"] .nav-wrapper {
+    flex-direction: row; /* سيصبح اللوجو يسار والقائمة يمين تلقائياً */
+}
+
+html[lang="en"] .residential-list li {
+    text-align: left;
+}
+
+html[lang="en"] .residential-list li i {
+    margin-right: 12px;
+    margin-left: 0;
+}
+
+/* إصلاح أيقونة الواتساب لتنتقل لليسار في الإنجليزية */
+html[lang="en"] .whatsapp-float {
+    right: auto;
+    left: 30px;
+}
+
+/* إصلاح قائمة الجوال (البرجر) لتظهر من اليسار في الإنجليزية */
+@media (max-width: 768px) {
+    html[lang="en"] .nav-links {
+        right: auto;
+        left: -100%;
+        transition: left 0.4s ease-in-out;
+    }
+    html[lang="en"] .nav-links.nav-active {
+        left: 0 !important;
+        right: auto !important;
+    }
+}
+html[lang="en"] .f-col {
+    text-align: left;
+}
