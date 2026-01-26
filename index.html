@@ -207,7 +207,7 @@
 
     // 4. تحديث كل العناصر التي تحتوي على سمات data-ar و data-en
     document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerText = newLang === "en" ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+        el.innerHTML = newLang === "en" ? el.getAttribute('data-en') : el.getAttribute('data-ar');
     });
 
     // 5. حفظ اختيار المستخدم في ذاكرة المتصفح

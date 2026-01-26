@@ -167,6 +167,13 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid #f0f0f0;
+    direction: rtl;
+    text-align: right;
+}
+/* التنسيق عند التحويل للإنجليزية */
+.en-mode .section-card {
+    direction: ltr !important;
+    text-align: left !important;
 }
 .section-card h3 {
     color: #2c3e50;
@@ -178,10 +185,24 @@ body {
     gap: 10px;
 }
 /* قائمة القسم السكني */
+
+
+
+.timer-grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة في كل صف */
+    gap: 15px;
+}
+/* --- تنسيق موحد يدعم الاتجاهين --- */
+.countdown-item.section-card {
+    width: 100%;
+    display: block;
+}
+
 .residential-list {
     list-style: none;
     padding: 0;
-    text-align: right;
+    margin: 20px 0;
 }
 
 .residential-list li {
@@ -189,25 +210,45 @@ body {
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 15px;
-    font-size: 1rem;
-    color: #555;
-}
-.timer-grid2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة في كل صف */
-    gap: 15px;
 }
 
 .residential-list li i {
-
-    margin-left: 12px; /* مسافة بين الأيقونة والنص من جهة اليمين */
-    
-    width: 20px;
+    color: var(--gold);
+    min-width: 25px;
     text-align: center;
-
-    color: #e67e22; /* لون ذهبي/برتقالي للفخامة */
     margin-top: 5px;
 }
+
+.residential-list li span {
+    flex: 1;
+}
+
+/* --- ضبط المحاذاة بناءً على لغة المستند --- */
+
+/* حالة اللغة العربية */
+html[lang="ar"] .section-card {
+    direction: rtl !important;
+    text-align: right !important;
+}
+html[lang="ar"] .residential-list li {
+    flex-direction: row; /* الأيقونة يمين ثم النص */
+}
+
+/* حالة اللغة الإنجليزية */
+html[lang="en"] .section-card {
+    direction: ltr !important;
+    text-align: left !important;
+}
+html[lang="en"] .residential-list li {
+    flex-direction: row; /* ستبقى الأيقونة أولاً ولكن من اليسار بسبب الـ ltr */
+}
+
+/* إصلاح العناوين داخل البطاقة */
+html[lang="en"] .section-card h3 {
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
 .time-box2 {
     background: #fdfdfd;
     border: 1px solid #ececec;
@@ -249,6 +290,12 @@ body {
 .time-box { 
     background: var(--white); padding: 25px; border-radius: 12px; min-width: 100px; 
     text-align: center; border-bottom: 4px solid var(--gold); box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+.countdown-item.section-card {
+    display: block;
+    width: 100%;
+    /* text-align: start تجعل النص يمين في العربي ويسار في الانجليزي تلقائياً */
+    text-align: start !important; 
 }
 .time-box span { display: block; font-size: 2.8rem; font-weight: 700; color: var(--dark); }
 .time-box small { color: var(--gold); font-weight: 700; display: block; margin-top: 5px; }
@@ -867,14 +914,9 @@ html[lang="en"] .nav-wrapper {
     flex-direction: row; /* سيصبح اللوجو يسار والقائمة يمين تلقائياً */
 }
 
-html[lang="en"] .residential-list li {
-    text-align: left;
-}
 
-html[lang="en"] .residential-list li i {
-    margin-right: 12px;
-    margin-left: 0;
-}
+
+
 
 
 /* إصلاح قائمة الجوال (البرجر) لتظهر من اليسار في الإنجليزية */
