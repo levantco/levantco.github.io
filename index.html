@@ -79,23 +79,29 @@
         </div>
     </section>
     <section id="latest-videos" class="project-section" style="background: #f9f9f9;">
-    <div class="container">
+<div class="container">
         <div class="section-header">
-            <h2 data-en="Top in YouTube" data-ar="أهم الفيديوهات">أهم الفيديوهات</h2>
+            <h2 data-en="Top Videos" data-ar="أهم الفيديوهات">أهم الفيديوهات</h2>
             <div class="divider"></div>
         </div>
+        
         <div class="video-grid">
             <div class="video-card">
                 <iframe src="https://www.youtube.com/embed/oQbIqs85_1U" frameborder="0" allowfullscreen></iframe>
-                <p>لقاء خاص مع صاحب الشركة</p>
+                <p data-en="Special interview with the company owner" data-ar="لقاء خاص مع صاحب الشركة">لقاء خاص مع صاحب الشركة</p>
             </div>
+            
             <div class="video-card">
                 <iframe src="https://www.youtube.com/embed/P7-CjTHvDDw" frameborder="0" allowfullscreen></iframe>
-                <p>اللمسات الاخيرة</p>
+                <p data-en="The Final Touches" data-ar="اللمسات الاخيرة">اللمسات الاخيرة</p>
             </div>
         </div>
+
         <div style="text-align: center; margin-top: 30px;">
-            <a href="https://youtube.com/@lcr.levant" class="btn btn-outline" style="border-color: #ff0000; color: #ff0000;"><i class="fab fa-youtube"></i> تابعنا على يوتيوب</a>
+            <a href="https://youtube.com/@lcr.levant" class="btn btn-outline" style="border-color: #ff0000; color: #ff0000;">
+                <i class="fab fa-youtube"></i> 
+                <span data-en="Follow us on YouTube" data-ar="تابعنا على يوتيوب">تابعنا على يوتيوب</span>
+            </a>
         </div>
     </div>
 </section>
@@ -122,32 +128,54 @@
     </div>
 </section>
 
-<a href="https://wa.me/963993427261?text=تحية طيبة، أود الاستفسار عن اخر مشاريعكم , وعن الوحدات السكنية المتاحة." class="whatsapp-float" target="_blank">
+<a href="https://wa.me/963993427261?text=تحية طيبة، أود الاستفسار عن اخر مشاريعكم" 
+   class="whatsapp-float" 
+   target="_blank" 
+   id="whatsappLink">
     <i class="fab fa-whatsapp"></i>
-    <span class="tooltip-text"></span>
+    <span class="tooltip-text" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</span>
 </a>
 </section>
 
 
 
-    <footer id="contact" class="footer">
+<footer id="contact" class="footer">
         <div class="container footer-grid">
             <div class="f-col">
                 <div class="footer-logo-wrapper">
-                <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" class="footer-logo">
+                    <img src="https://drive.google.com/thumbnail?id=1Fr40wTUhvAeuKkgc3xVyHatH8SWCbNJz&sz=w500" class="footer-logo">
                 </div>
-                <p>ليفانتكو ال سي آر - قمة الرفاهية في التطوير العقاري.</p>               
+                <p data-en="Levantco LCR - The pinnacle of luxury in real estate development." 
+                   data-ar="ليفانتكو ال سي آر - قمة الرفاهية في التطوير العقاري.">
+                   ليفانتكو ال سي آر - قمة الرفاهية في التطوير العقاري.
+                </p>                
             </div>
+
             <div class="f-col">
                 <h4 data-en="Quick Links" data-ar="روابط سريعة">روابط سريعة</h4>
-                <p><a href="jannati.html" style="color: #fff; text-decoration: none;">مشروع جنتي</a></p>
-                <p><a href="jannati.html#booking" style="color: #fff; text-decoration: none;">حجز الشقق</a></p>
+                <p>
+                    <a href="jannati.html" style="color: #fff; text-decoration: none;" 
+                       data-en="Jannati Project" data-ar="مشروع جنتي">مشروع جنتي</a>
+                </p>
+                <p>
+                    <a href="jannati.html#booking" style="color: #fff; text-decoration: none;" 
+                       data-en="Apartment Booking" data-ar="حجز الشقق">حجز الشقق</a>
+                </p>
             </div>
-            <div class="f-col">
-                <h4 data-en="Direct Contact" data-ar="تواصل مباشر">تواصل مباشر</h4>
-                <p><i class="fas fa-phone"></i> +963993427261</p>
-                <p><i class="fas fa-envelope"></i> levantco.lcr@gmail.com</p>
-            </div>
+
+  <div class="f-col">
+    <h4 data-en="Direct Contact" data-ar="تواصل مباشر">تواصل مباشر</h4>
+    
+    <p class="contact-item">
+        <i class="fas fa-phone"></i>
+        <span class="phone-number">+963 993 427 261</span>
+    </p>
+    
+    <p class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>levantco.lcr@gmail.com</span>
+    </p>
+</div>
         </div>
     </footer>
 
@@ -162,14 +190,52 @@
 
         // دالة تبديل اللغة
         function toggleLanguage() {
-            const isAr = document.documentElement.lang === "ar";
-            document.documentElement.lang = isAr ? "en" : "ar";
-            document.documentElement.dir = isAr ? "ltr" : "rtl";
-            document.getElementById('langBtn').innerText = isAr ? "العربية" : "English";
-            document.querySelectorAll('[data-en]').forEach(el => {
-                el.innerHTML = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
-            });
+    // 1. تحديد اللغة الجديدة بناءً على اللغة الحالية للمستند
+    const currentLang = document.documentElement.lang;
+    const newLang = currentLang === "ar" ? "en" : "ar";
+    const newDir = newLang === "ar" ? "rtl" : "ltr";
+
+    // 2. تطبيق التغييرات الأساسية على الوسم html
+    document.documentElement.lang = newLang;
+    document.documentElement.dir = newDir;
+
+    // 3. تحديث نص زر تبديل اللغة
+    const langBtn = document.getElementById('langBtn');
+    if (langBtn) {
+        langBtn.innerText = newLang === "ar" ? "English" : "العربية";
+    }
+
+    // 4. تحديث كل العناصر التي تحتوي على سمات data-ar و data-en
+    document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = newLang === "en" ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+    });
+
+    // 5. حفظ اختيار المستخدم في ذاكرة المتصفح
+    localStorage.setItem('preferredLang', newLang);
+
+    // 6. تحديث رابط الواتساب برمجياً (اختياري)
+    updateWhatsAppLink(newLang);
+}
+
+// دالة إضافية لتحديث رابط الواتساب حسب اللغة
+function updateWhatsAppLink(lang) {
+    const waLink = document.getElementById('whatsappLink');
+    if (waLink) {
+        if (lang === 'en') {
+            waLink.href = "https://wa.me/963993427261?text=Hello, I would like to inquire about your projects.";
+        } else {
+            waLink.href = "https://wa.me/963993427261?text=تحية طيبة، أود الاستفسار عن اخر مشاريعكم.";
         }
+    }
+}
+// عند تحميل الصفحة، تأكد من اللغة المحفوظة
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang');
+    if (savedLang && savedLang !== document.documentElement.lang) {
+        // إذا كانت اللغة المحفوظة مختلفة عن لغة الصفحة الحالية، نقوم بالتبديل مرة واحدة
+        toggleLanguage(); 
+    }
+});
     </script>
 </body>
 </html>

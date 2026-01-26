@@ -712,7 +712,8 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     justify-content: center;
     position: fixed;
     bottom: 30px;
-    right: 30px; /* ليكون في جهة اليد اليمنى للمستخدم */
+    left: 30px; /* ليكون في جهة اليد اليمنى للمستخدم */
+    right: auto;
     background-color: #25d366;
     color: white;
     width: 65px;
@@ -725,6 +726,43 @@ input:focus { border-color: var(--gold); outline: none; background: #fffdf5; }
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     z-index: 9999;
     transition: all 0.3s ease;
+}
+.whatsapp-float i {
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+}
+.whatsapp-float .tooltip-text {
+    /* تعديل مكان التلميح ليظهر دائماً فوق الزر */
+    position: absolute;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+.whatsapp-float:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* سهم صغير أسفل التلميح */
+.whatsapp-float .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
 }
 
 .whatsapp-float:hover {
@@ -838,11 +876,6 @@ html[lang="en"] .residential-list li i {
     margin-left: 0;
 }
 
-/* إصلاح أيقونة الواتساب لتنتقل لليسار في الإنجليزية */
-html[lang="en"] .whatsapp-float {
-    right: auto;
-    left: 30px;
-}
 
 /* إصلاح قائمة الجوال (البرجر) لتظهر من اليسار في الإنجليزية */
 @media (max-width: 768px) {
@@ -855,7 +888,47 @@ html[lang="en"] .whatsapp-float {
         left: 0 !important;
         right: auto !important;
     }
+        .f-col {
+        text-align: right !important; /* إجبار اليمين في العربي */
+    }
+    html[lang="en"] .f-col {
+        text-align: left !important; /* إجبار اليسار في الإنجليزي */
+    }
 }
 html[lang="en"] .f-col {
     text-align: left;
 }
+/* عندما تكون اللغة إنجليزية */
+html[lang="en"] .whatsapp-float {
+    left: auto;
+    right: 30px;
+}
+
+/* ضمان عدم ظهور أي خطوط زرقاء أو نصوص بجانب الأيقونة */
+.whatsapp-float span {
+    font-family: cadillacbold, sans-serif !important;
+}
+
+/* تنسيق الفقرة الحاضنة */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    /* في العربية (الوضع الافتراضي) المحاذاة لليمين */
+    justify-content: flex-start; 
+}
+
+/* تنسيق الرقم تحديداً */
+.phone-number {
+    display: inline-block;
+    direction: ltr; /* يضمن ترتيب الرقم من اليسار لليمين */
+    unicode-bidi: embed; /* يمنع تداخل الاتجاهات */
+}
+
+/* عند التحويل للإنجليزية */
+html[lang="en"] .contact-item {
+    /* المحاذاة لليسار في الإنجليزية */
+    justify-content: flex-start; 
+}
+
